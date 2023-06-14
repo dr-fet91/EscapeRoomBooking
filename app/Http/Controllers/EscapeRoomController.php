@@ -13,7 +13,11 @@ class EscapeRoomController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            return EscapeRoom::paginate();
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th);
+        }
     }
 
     /**
@@ -37,9 +41,27 @@ class EscapeRoomController extends Controller
      */
     public function show(EscapeRoom $escapeRoom)
     {
-        //
+        try {
+            return $escapeRoom;
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th);
+        }
     }
 
+    /**
+     * Get all time slots for a specific escape room.
+     *
+     * @param  EscapeRoom  $escapeRoom
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getTimeSlotsByEscapeRoom(EscapeRoom $escapeRoom)
+    {
+        try {
+            return $escapeRoom->timeSlots()->paginate();
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th);
+        }
+    }
     /**
      * Show the form for editing the specified resource.
      */
