@@ -13,7 +13,7 @@ class BookingPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->id ? true : false;
+        return auth()->check();
     }
 
     /**
