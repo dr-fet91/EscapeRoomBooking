@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthenticateController;
 use App\Http\Controllers\EscapeRoomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -15,15 +16,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
 
-Route::prefix('escape-rooms')->group(function(){
+Route::prefix('escape-rooms')->group(function () {
     Route::get('/', [EscapeRoomController::class, 'index']);
     Route::get('/{escapeRoom}', [EscapeRoomController::class, 'show']);
     Route::get('/{escapeRoom}/time-slots', [EscapeRoomController::class, 'getTimeSlotsByEscapeRoom']);
+});
+
+
+Route::post('/login', [AuthenticateController::class, 'authenticate']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    // Routes that require authentication
+    Route::post('/logout', [AuthenticateController::class, 'logout']);
 });
 
 //Route::apiResource('/escape-rooms', EscapeRoomController::class);
