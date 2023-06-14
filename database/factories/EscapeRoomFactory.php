@@ -17,7 +17,9 @@ class EscapeRoomFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => fake()->unique()->word(),
+            'theme' => fake()->unique()->word(),
+            'max_participants' => fake()->numberBetween(1, 100),
         ];
     }
 }

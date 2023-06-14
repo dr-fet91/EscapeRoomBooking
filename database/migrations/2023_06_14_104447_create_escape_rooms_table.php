@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('escape_rooms', function (Blueprint $table) {
             $table->id();
-            $table->string('theme')->nullable();
+            $table->string('name')->unique();
+            $table->string('theme')->unique();
             $table->integer('max_participants')->default(0);
             $table->timestamps();
         });

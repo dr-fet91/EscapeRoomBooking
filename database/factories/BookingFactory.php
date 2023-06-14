@@ -2,6 +2,9 @@
 
 namespace Database\Factories;
 
+use App\Models\EscapeRoom;
+use App\Models\TimeSlot;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +20,10 @@ class BookingFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'escape_room_id' => EscapeRoom::factory(),
+            'time_slot_id' => TimeSlot::factory(),
+            'discount_percent' => fake()->numberBetween(0, 50),
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\EscapeRoom;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -12,6 +13,6 @@ class EscapeRoomSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        EscapeRoom::factory(10)->create();
     }
 }

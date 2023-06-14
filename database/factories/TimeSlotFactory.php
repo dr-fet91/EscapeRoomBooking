@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\EscapeRoom;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,8 +17,12 @@ class TimeSlotFactory extends Factory
      */
     public function definition(): array
     {
+        $startTime = now();
+        $endTime = $startTime->addHour(); 
         return [
-            //
+            'escape_room_id' => EscapeRoom::factory(),
+            'start_time' => $startTime,
+            'end_time' => $endTime,
         ];
     }
 }

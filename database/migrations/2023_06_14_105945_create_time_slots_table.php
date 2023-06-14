@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('time_slots', function (Blueprint $table) {
             $table->id();
             $table->foreignId('escape_room_id')->constrained('escape_rooms')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->dateTime('start_time')->default(null);
-            $table->dateTime('end_time')->default(null);
+            $table->dateTime('start_time')->nullable();
+            $table->dateTime('end_time')->nullable();
             $table->timestamps();
         });
     }
