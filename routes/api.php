@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthenticateController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\EscapeRoomController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,12 @@ Route::post('/login', [AuthenticateController::class, 'authenticate']);
 Route::middleware('auth:sanctum')->group(function () {
     // Routes that require authentication
     Route::post('/logout', [AuthenticateController::class, 'logout']);
+    
+    Route::prefix('bookings')->group(function () {
+        Route::get('/', [BookingController::class, 'index']);
+        Route::post('/', [BookingController::class, 'store']);
+        Route::delete('/{booking}', [BookingController::class, 'destroy']);
+    });
 });
 
 //Route::apiResource('/escape-rooms', EscapeRoomController::class);

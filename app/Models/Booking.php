@@ -10,6 +10,7 @@ class Booking extends Model
 {
     use HasFactory;
 
+    protected $guarded = ['id'];
     /**
      * Get the user associated with the booking.
      */

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Booking;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Requests\UpdateBookingRequest;
+use Exception;
 
 class BookingController extends Controller
 {
@@ -13,7 +14,17 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            /**
+             *  Get the authenticated user
+             *  @var User $user 
+             */
+            $user = auth()->user();
+
+            return $user->bookings()->paginate();
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th);
+        }
     }
 
     /**
@@ -29,7 +40,37 @@ class BookingController extends Controller
      */
     public function store(StoreBookingRequest $request)
     {
-        //
+        try {
+            /**
+             *  Get the authenticated user
+             *  @var User $user 
+             */
+            $user = auth()->user();
+
+            $booking = new Booking([
+                'user_id' => $user->id,
+                'escape_room_id' => $request->escape_room_id,
+                'time_slot_id' => $request->time_slot_id,
+                'discount_percent' => $request->discount_percent,
+            ]);
+
+            // Apply discount if it's the user's birthday
+            if ($user->isBirthday() && !$request->discount_percent > 90) {
+                // Apply 10% discount
+                $booking->discount_percent += 10;
+            }
+
+            // Save the booking
+            $booking->save();
+
+            // Return a response
+            return [
+                'message' => 'Booking created successfully',
+                'booking' => $booking
+            ];
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th);
+        }
     }
 
     /**
@@ -61,6 +102,18 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking)
     {
-        //
+        try {
+            /**
+             *  Get the authenticated user
+             *  @var User $user 
+             */
+            $user = auth()->user();
+
+            if ($user->cannot('delete', $booking)) throw new Exception("You are not authorized to delete this booking", 403);
+
+            return $booking->delete();
+        } catch (\Throwable $th) {
+            return $this->errorResponse($th);
+        }
     }
 }

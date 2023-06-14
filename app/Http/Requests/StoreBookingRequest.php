@@ -11,7 +11,7 @@ class StoreBookingRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return @auth()->user()->id;
     }
 
     /**
@@ -22,7 +22,9 @@ class StoreBookingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'escape_room_id' => 'required|exists:escape_rooms,id',
+            'time_slot_id' => 'required|exists:time_slots,id',
+            'discount_percent' => 'nullable|numeric|min:0|max:100'
         ];
     }
 }
