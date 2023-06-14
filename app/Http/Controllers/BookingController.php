@@ -6,6 +6,7 @@ use App\Models\Booking;
 use App\Http\Requests\StoreBookingRequest;
 use App\Interfaces\BookingRepositoryInterface;
 use Exception;
+use Illuminate\Http\Response;
 
 class BookingController extends Controller
 {
@@ -59,10 +60,10 @@ class BookingController extends Controller
                 'discount_percent' => $request->discount_percent,
             ]);
             if ($booking) {
-                return [
+                return response([
                     'message' => 'Booking created successfully',
                     'booking' => $booking
-                ];
+                ], Response::HTTP_CREATED);
             }
         } catch (\Throwable $th) {
             return $this->errorResponse($th);
