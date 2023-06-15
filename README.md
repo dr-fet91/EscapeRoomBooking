@@ -1,66 +1,44 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Escape Room Booking System
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This is a RESTful API for an escape room booking system built with Laravel. The system allows users to view available escape rooms, book time slots, and manage their bookings.
 
-## About Laravel
+## Installation and Setup
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+To run this project locally, follow these steps:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+1. Clone the repository: `git clone <repository_url>`
+2. Install the dependencies: `composer install`
+3. Set up the environment variables: Create a copy of the `.env.example` file and rename it to `.env`. Modify the file to add the necessary configurations for your local environment.
+4. Generate an application key: `php artisan key:generate`
+5. Run the database migrations: `php artisan migrate`
+6. Start the development server: `php artisan serve`
+##### In order to create fake data at the same time (Laravel Facroey), you can use `php artisan migrate:fresh --seed` command instead of `php artisan migrate`
+## API Endpoints
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- `GET /escape-rooms`: Retrieve a list of all escape rooms.
+- `GET /escape-rooms/{id}`: Retrieve details of a specific escape room by its ID.
+- `GET /escape-rooms/{id}/time-slots`: Retrieve available time slots for a specific escape room.
+- `POST /bookings`: Create a new booking for a specific escape room and time slot.
+- `GET /bookings`: Retrieve all bookings for the authenticated user.
+- `DELETE /bookings/{id}`: Cancel a specific booking by its ID.
 
-## Learning Laravel
+## Review the program
+It is recommended to use the Postman program for checking.
+The Postman output file is placed in the main directory
+Import the file to test.
+To login, enter the e-mail and password in the previously created database and enter the output token as `Bearer Token` in the authentication section. Paths to bookings all require authentication
+## Database Structure
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The database schema for this project includes tables for users, escape_rooms, time_slots, and bookings. The relationships between these tables are defined in the respective models.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## Authentication and User Profiles
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Authentication is implemented using Laravel's built-in authentication features (Laravel Sanctum). Users can register, log in, and manage their profiles. User information such as name, email, and date of birth is stored securely.
 
-## Laravel Sponsors
+## Testing
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+This project includes unit tests to ensure the correctness and reliability of the API. You can run the tests using the following command: `php artisan test`
+##### But remember to set the .env.testing file before that and allocate a separate database for this
 
-### Premium Partners
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
 
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
