@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-use App\Http\Controllers\BookingController;
 use App\Models\Booking;
 use App\Models\EscapeRoom;
 use App\Models\TimeSlot;
