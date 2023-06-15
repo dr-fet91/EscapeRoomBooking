@@ -2,6 +2,16 @@
 
 This is a RESTful API for an escape room booking system built with Laravel. The system allows users to view available escape rooms, book time slots, and manage their bookings.
 
+## Repository Design Pattern
+
+The BookingController in this project follows the Repository design pattern. The Repository pattern is used to separate the data access logic from the business logic of the application. It provides a layer of abstraction for data persistence and retrieval.
+
+By utilizing the Repository pattern, the BookingController interacts with a dedicated BookingRepository class to perform CRUD (Create, Read, Update, Delete) operations on the bookings data. This helps in decoupling the controller from the underlying data storage mechanism, making it easier to switch between different data sources or ORM frameworks in the future.
+
+The BookingRepository class implements methods for querying and manipulating the bookings data, encapsulating the underlying data access details and providing a clean and consistent API for the controller to work with.
+
+The use of the Repository pattern promotes code reusability, testability, and maintainability by providing a clear separation of concerns between the different layers of the application.
+
 ## Installation and Setup
 
 To run this project locally, follow these steps:
@@ -39,6 +49,15 @@ Authentication is implemented using Laravel's built-in authentication features (
 
 This project includes unit tests to ensure the correctness and reliability of the API. You can run the tests using the following command: `php artisan test`
 ##### But remember to set the .env.testing file before that and allocate a separate database for this
+## Contact Information
+
+For any questions or inquiries, feel free to reach out to me:
+
+- Name: [Reza Mahmudi Moghadam]
+- Email: [dr.fet91@gmail.com]
+- Social Media: [linkedin](https://www.linkedin.com/in/reza-mahmudi-moghadam-59357a211/)
+
+I'm interested in reading your comments and messages, and I'm available for collaboration if needed.
 
 
 
