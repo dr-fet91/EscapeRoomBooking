@@ -16,7 +16,7 @@ The use of the Repository pattern promotes code reusability, testability, and ma
 
 To run this project locally, follow these steps:
 
-1. Clone the repository: `git clone <repository_url>`
+1. Clone the repository
 2. Install the dependencies: `composer install`
 3. Set up the environment variables: Create a copy of the `.env.example` file and rename it to `.env`. Modify the file to add the necessary configurations for your local environment.
 4. Generate an application key: `php artisan key:generate`
@@ -34,7 +34,7 @@ To run this project locally, follow these steps:
 
 ## Review the program
 It is recommended to use the Postman program for checking.
-The Postman output file is placed in the main directory
+The Postman output file is placed in the root directory
 Import the file to test.
 To login, enter the e-mail and password in the previously created database and enter the output token as `Bearer Token` in the authentication section. Paths to bookings all require authentication
 ## Database Structure
